@@ -1,4 +1,10 @@
 {
-  "nugra": { "password": "rakyat123", "role": "rakyat" },
-  "pejabat": { "password": "admin123", "role": "pejabat" }
+    "nugra": {
+        "password": "123",
+        "role": "rakyat"
+    },
+    "pejabat": {
+        "password": "123",
+        "role": "pejabat"
+    }
 }

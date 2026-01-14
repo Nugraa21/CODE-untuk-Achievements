@@ -1,6 +1,7 @@
 {
-  "os": "Nugra21.SaWiT-OS",
-  "version": "1.0 MODULAR",
-  "kernel": "SawitKernel",
-  "creator": "Ludang Prasetyo Nugroho"
+    "os": "Nugra21.SaWiT-OS",
+    "version": "1.1 SAWIT-ENHANCED",
+    "kernel": "SawitKernel v2.0",
+    "creator": "Ludang Prasetyo Nugroho",
+    "uptime": "🌱 Fresh boot"
 }

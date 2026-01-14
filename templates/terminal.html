@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SaWiT OS - Web Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; margin:0; padding:20px; }
+        #terminal { white-space: pre-wrap; word-wrap: break-word; min-height: 100vh; }
+        #input-line { 
+            background: transparent; border: none; color: #0f0; 
+            font-family: 'Courier New', monospace; font-size: 16px; 
+            outline: none; width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+    <input id="input-line" autofocus autocomplete="off">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const term = document.getElementById('terminal');
+        const inputLine = document.getElementById('input-line');
+
+        function addText(text) {
+            term.innerHTML += text.replace(/\n/g, '<br>').replace(/ /g, '&nbsp;');
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        socket.on('output', (data) => {
+            addText(data);
+            inputLine.focus();
+        });
+
+        socket.on('prompt', (prompt) => {
+            addText(prompt);
+            inputLine.focus();
+        });
+
+        inputLine.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = inputLine.value;
+                addText(cmd + '<br>');
+                socket.emit('input', { text: cmd });
+                inputLine.value = '';
+            }
+        });
+
+        // Fokus otomatis saat klik di mana saja
+        document.body.addEventListener('click', () => inputLine.focus());
+
+        // Fokus saat halaman dimuat
+        window.onload = () => inputLine.focus();
+    </script>
+</body>
+</html>

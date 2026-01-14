@@ -24,7 +24,7 @@ COMMANDS = {
     "SIAPA": "User aktif",
     "INFO_SAWIT": "Info sistem",
     "NEOFETCH": "Info ala Linux",
-    "PENCITRAAN": "Ganti user",
+    "MERAKYAT": "Ganti user",
     "SUDO": "Mode pejabat",
     "BANTUAN": "Daftar command",
     "SAWIT": "Easter egg 🌴",
@@ -182,7 +182,7 @@ def shell(fs, users, system, save_fs):
             elif c == "NEOFETCH":
                 neofetch(system, user)
 
-            elif c == "PENCITRAAN":
+            elif c == "MERAKYAT":
                 u, r = login(users)
                 if u:
                     user, role = u, r

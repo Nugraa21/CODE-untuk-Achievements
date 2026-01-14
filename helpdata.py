@@ -1,0 +1,20 @@
+HELP = {
+    "LIHAT": "Menampilkan isi folder saat ini",
+    "MASUK": "Masuk ke folder tertentu",
+    "MUNDUR": "Kembali ke folder sebelumnya",
+    "POSISI": "Menampilkan lokasi sekarang",
+    "BUKA": "Membuat folder baru",
+    "BAKAR": "Menghapus folder",
+    "KEBUN": "Menampilkan struktur folder",
+    "TANAM": "Membuat file kosong",
+    "PANEN": "Membaca isi file",
+    "RAWAT": "Edit isi file (akhiri :simpan)",
+    "TEBANG": "Menghapus file",
+    "CANGKOK": "Copy file",
+    "PINDAH": "Pindahkan file",
+    "SIAPA": "Menampilkan user aktif",
+    "BERSIHKAN": "Membersihkan layar",
+    "INFO_SAWIT": "Informasi OS",
+    "PULANG": "Keluar dari OS",
+    "SAWIT": "Command rahasia 😈"
+}

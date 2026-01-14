@@ -1,26 +1,17 @@
-# Fake filesystem (RAM only)
+import json
 
-filesystem = {
-    "/": {
-        "home": {
-            "nugra": {
-                "readme.txt": "Welcome to Nugra21OS\nThis is a fake terminal OS.",
-                "todo.txt": "- Learn Python\n- Build fake OS\n- Push to GitHub"
-            }
-        },
-        "etc": {
-            "os-release": "Nugra21OS v1.0"
-        }
-    }
-}
+PATH = "storage/fs.json"
 
-current_path = ["/", "home", "nugra"]
+def load_fs():
+    with open(PATH, "r") as f:
+        return json.load(f)
 
-def get_dir():
-    d = filesystem["/"]
-    for p in current_path[1:]:
-        d = d[p]
-    return d
+def save_fs(fs):
+    with open(PATH, "w") as f:
+        json.dump(fs, f, indent=2)
 
-def pwd():
-    return "/".join(current_path).replace("//", "/")
+def get_dir(fs, cwd):
+    cur = fs["/"]
+    for p in [x for x in cwd.split("/") if x]:
+        cur = cur[p]
+    return cur

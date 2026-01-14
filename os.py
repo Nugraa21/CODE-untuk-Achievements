@@ -1,9 +1,10 @@
-from boot import boot_screen
-from shell import shell_loop
+from shell import shell
 
-def main():
-    boot_screen()
-    shell_loop()
+print("""
+====================================
+ 🌴 NUGRA21.SAWITOS v2
+ Fake Linux Terminal OS
+====================================
+""")
 
-if __name__ == "__main__":
-    main()
+shell("nugra")

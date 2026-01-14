@@ -1,0 +1,13 @@
+{
+  "/": {
+    "home": {
+      "nugra": {
+        "readme.txt": "Welcome to Nugra21OS\nThis is a fake terminal OS.",
+        "todo.txt": "- Learn Python\n- Build fake OS\n- Push to GitHub"
+      }
+    },
+    "etc": {},
+    "var": {},
+    "tmp": {}
+  }
+}

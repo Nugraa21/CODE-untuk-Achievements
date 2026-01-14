@@ -1,0 +1,10 @@
+{
+    "nugra": {
+        "password": "123",
+        "role": "user"
+    },
+    "pejabat": {
+        "password": "admin",
+        "role": "pejabat"
+    }
+}

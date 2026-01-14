@@ -43,15 +43,15 @@ def loading_message(msg, duration=1.2):
 def banner():
     clear()
     quotes = [
-        "Sawit: Tanam kode, panen masa depan.",
-        "CLI Modular. Berbasis Python. Edisi Nugra21.",
-        "Terminal Pro: LS/LIHAT. SUDO. IRIGASI & lainnya."
+        "--------------------------------"
+        # "CLI Modular. Berbasis Python. Edisi Nugra21."
+        # "Terminal Pro: LS/LIHAT. SUDO. IRIGASI & lainnya."
     ]
     quote = random.choice(quotes)
     print(Fore.CYAN + Style.BRIGHT + "SaWiT OS v1.1 - Terminal Nugra21" + Style.RESET_ALL)
     print(Fore.YELLOW + quote + Style.RESET_ALL)
-    print(Fore.WHITE + "BANTUAN: Daftar perintah | NEOFETCH: Info sistem" + Style.RESET_ALL)
-    print(Fore.MAGENTA + "=" * 50 + Style.RESET_ALL)
+    # print(Fore.WHITE + "BANTUAN: Daftar perintah | NEOFETCH: Info sistem" + Style.RESET_ALL)
+    # print(Fore.MAGENTA + "=" * 50 + Style.RESET_ALL)
 
 # ===============================
 # Prompt

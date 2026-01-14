@@ -1,10 +1,11 @@
 from shell import shell
 
 print("""
-====================================
- 🌴 NUGRA21.SAWITOS v2
+========================================
+ 🌴 Nugra21.SaWiTOS v3
  Fake Linux Terminal OS
-====================================
+ Dibuat dengan Python
+========================================
 """)
 
 shell("nugra")

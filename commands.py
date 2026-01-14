@@ -4,14 +4,13 @@ import os, copy
 
 def LIHAT(cwd):
     fs = load_fs()
-    for i in get_dir(fs, cwd):
-        print(i)
+    for k in get_dir(fs, cwd):
+        print(k)
 
 def MASUK(cwd, name):
-    return "/" + "/".join((cwd+"/"+name).split("/")[1:])
-
-def MUNDUR(cwd):
-    return "/" + "/".join(cwd.split("/")[:-1])
+    if name == "..":
+        return "/" + "/".join(cwd.split("/")[:-1])
+    return cwd.rstrip("/") + "/" + name
 
 def POSISI(cwd):
     print(cwd)
@@ -33,18 +32,18 @@ def TANAM(cwd, name):
 
 def PANEN(cwd, name):
     fs = load_fs()
-    print(get_dir(fs, cwd).get(name, "File tidak ada"))
+    print(get_dir(fs, cwd).get(name, "File tidak ditemukan"))
 
 def RAWAT(cwd, name):
     fs = load_fs()
-    print("Ketik isi (:simpan untuk keluar)")
-    isi = []
+    print("Edit file (:simpan untuk keluar)")
+    data = []
     while True:
         x = input()
         if x == ":simpan":
             break
-        isi.append(x)
-    get_dir(fs, cwd)[name] = "\n".join(isi)
+        data.append(x)
+    get_dir(fs, cwd)[name] = "\n".join(data)
     save_fs(fs)
 
 def TEBANG(cwd, name):
@@ -57,11 +56,20 @@ def CANGKOK(cwd, src, dst):
     get_dir(fs, cwd)[dst] = copy.deepcopy(get_dir(fs, cwd)[src])
     save_fs(fs)
 
+def PINDAH(cwd, src, dst):
+    fs = load_fs()
+    get_dir(fs, cwd)[dst] = get_dir(fs, cwd)[src]
+    del get_dir(fs, cwd)[src]
+    save_fs(fs)
+
+def BERSIHKAN():
+    os.system("cls" if os.name == "nt" else "clear")
+
 def SIAPA(user):
     print(user)
 
 def INFO_SAWIT():
-    print("🌴 Nugra21 SawitOS v2 | Python Terminal OS")
+    print("🌴 Nugra21.SaWiTOS v3 | Python Terminal OS")
 
 def BANTUAN():
     for k,v in HELP.items():

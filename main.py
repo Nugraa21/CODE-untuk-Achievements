@@ -7,23 +7,23 @@ DEFAULT_FS = {
     "/": {
         "home": {
             "nugra": {
-                "readme.txt": "Selamat datang di Nugra21.SaWiTOS 🌴"
+                "readme.txt": "Selamat datang di Nugra21.SaWiT-OS 🌴"
             }
         }
     }
 }
 
 DEFAULT_USERS = {
-    "nugra": {"password": "123", "role": "user"},
-    "pejabat": {"password": "admin", "role": "pejabat"}
+    "nugra": {"password": "rakyat123", "role": "rakyat"},
+    "pejabat": {"password": "admin123", "role": "pejabat"}
 }
 
 SYSTEM_FILE = "storage/system.json"
 if not os.path.exists(SYSTEM_FILE):
     with open(SYSTEM_FILE, "w") as f:
         json.dump({
-            "os": "Nugra21.SaWiTOS",
-            "version": "3.0 MODULAR",
+            "os": "Nugra21.SaWiT-OS",
+            "version": "1.0 MODULAR",
             "kernel": "SawitKernel",
             "creator": "Ludang Prasetyo Nugroho"
         }, f, indent=4)

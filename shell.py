@@ -24,7 +24,7 @@ COMMANDS = {
     "SIAPA": "User aktif",
     "INFO_SAWIT": "Info sistem",
     "NEOFETCH": "Info ala Linux",
-    "SU": "Ganti user",
+    "PENCITRAAN": "Ganti user",
     "SUDO": "Mode pejabat",
     "BANTUAN": "Daftar command",
     "SAWIT": "Easter egg 🌴",
@@ -62,8 +62,13 @@ def shell(fs, users, system, save_fs):
                 print("  ".join(curdir().keys()))
 
             elif c == "MASUK":
-                if a[1] in curdir():
+                if len(a) < 2:
+                    print("Masukkan nama folder!")
+                    continue
+                if a[1] in curdir() and isinstance(curdir()[a[1]], dict):
                     cwd.append(a[1])
+                else:
+                    print("Folder tidak ditemukan")
 
             elif c == "MUNDUR":
                 if len(cwd) > 1:
@@ -73,11 +78,23 @@ def shell(fs, users, system, save_fs):
                 print(pwd())
 
             elif c == "BUKA":
-                curdir()[a[1]] = {}
+                if len(a) < 2:
+                    print("Masukkan nama folder!")
+                    continue
+                if a[1] in curdir():
+                    print("Folder sudah ada")
+                else:
+                    curdir()[a[1]] = {}
 
             elif c == "BAKAR":
+                if len(a) < 2:
+                    print("Masukkan nama folder!")
+                    continue
                 if role == "pejabat":
-                    del curdir()[a[1]]
+                    if a[1] in curdir():
+                        del curdir()[a[1]]
+                    else:
+                        print("Folder tidak ditemukan")
                 else:
                     print("Akses ditolak")
 
@@ -85,12 +102,24 @@ def shell(fs, users, system, save_fs):
                 tree(curdir())
 
             elif c == "TANAM":
+                if len(a) < 2:
+                    print("Masukkan nama file!")
+                    continue
                 curdir()[a[1]] = ""
 
             elif c == "PANEN":
-                print(curdir()[a[1]])
+                if len(a) < 2:
+                    print("Masukkan nama file!")
+                    continue
+                if a[1] in curdir() and isinstance(curdir()[a[1]], str):
+                    print(curdir()[a[1]])
+                else:
+                    print("File tidak ditemukan")
 
             elif c == "RAWAT":
+                if len(a) < 2:
+                    print("Masukkan nama file!")
+                    continue
                 print("Edit (:simpan)")
                 isi = []
                 while True:
@@ -101,10 +130,44 @@ def shell(fs, users, system, save_fs):
                 curdir()[a[1]] = "\n".join(isi)
 
             elif c == "TEBANG":
-                del curdir()[a[1]]
+                if len(a) < 2:
+                    print("Masukkan nama file!")
+                    continue
+                if a[1] in curdir():
+                    del curdir()[a[1]]
+                else:
+                    print("File tidak ditemukan")
+
+            elif c == "CANGKOK":
+                if len(a) < 3:
+                    print("Gunakan: CANGKOK nama_file tujuan_file")
+                    continue
+                src, dest = a[1], a[2]
+                if src in curdir() and isinstance(curdir()[src], str):
+                    curdir()[dest] = curdir()[src]
+                    print(f"File '{src}' berhasil dicopy ke '{dest}'")
+                else:
+                    print("File sumber tidak ditemukan atau bukan file")
+
+            elif c == "PINDAH":
+                if len(a) < 3:
+                    print("Gunakan: PINDAH nama_lama nama_baru")
+                    continue
+                src, dest = a[1], a[2]
+                if src in curdir():
+                    curdir()[dest] = curdir().pop(src)
+                    print(f"'{src}' berhasil dipindah/rename menjadi '{dest}'")
+                else:
+                    print("File/folder sumber tidak ditemukan")
 
             elif c == "GANTI":
-                curdir()[a[2]] = curdir().pop(a[1])
+                if len(a) < 3:
+                    print("Gunakan: GANTI nama_lama nama_baru")
+                    continue
+                if a[1] in curdir():
+                    curdir()[a[2]] = curdir().pop(a[1])
+                else:
+                    print("File/folder tidak ditemukan")
 
             elif c in ["BERSIHKAN", "CLS"]:
                 banner()
@@ -119,10 +182,17 @@ def shell(fs, users, system, save_fs):
             elif c == "NEOFETCH":
                 neofetch(system, user)
 
-            elif c == "SU":
+            elif c == "PENCITRAAN":
                 u, r = login(users)
                 if u:
                     user, role = u, r
+
+            elif c == "SUDO":
+                if role != "pejabat":
+                    role = "pejabat"
+                    print("Mode pejabat diaktifkan!")
+                else:
+                    print("Sudah dalam mode pejabat")
 
             elif c == "BANTUAN":
                 for k, v in COMMANDS.items():
